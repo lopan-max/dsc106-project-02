@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Project 2 Report</title>
+        <style>
+            :root {
+                --color-neutral-95: hsl(220 10% 95%);
+                --color-neutral-90: hsl(220 10% 90%);
+                --color-neutral-80: hsl(220 10% 80%);
+                --color-neutral-70: hsl(220 10% 70%);
+                --color-neutral-60: hsl(220 10% 60%);
+                --color-neutral-50: hsl(220 10% 50%);
+                --color-neutral-40: hsl(220 10% 40%);
+                --color-neutral-30: hsl(220 10% 30%);
+                --color-neutral-20: hsl(220 10% 20%);
+                --color-neutral-10: hsl(220 10% 10%);
+            }
+
+            html {
+                font: 100%/1.5 system-ui;
+                counter-reset: figure;
+                background: var(--color-neutral-95);
+                max-width: min(75vw, 80em);
+                margin: 0 auto;
+            }
+
+            /* Headings */
+
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                line-height: 1.1;
+                font-weight: 600;
+                text-wrap: balance;
+            }
+
+            h1,
+            h2 {
+                border-bottom: 1px solid var(--color-neutral-80);
+                padding-bottom: 0.2em;
+            }
+
+            h1 {
+                margin-block: 1em 0.5rem;
+                font-size: clamp(2.5em, 150% + 2vh + 2vw, 10vmin);
+                font-weight: 800;
+
+                small {
+                    display: block;
+                    width: fit-content;
+                    padding: 0.2em 0.5em;
+                    margin-inline: auto;
+                    color: white;
+                    background: var(--color-neutral-40);
+                    font-size: 40%;
+                    text-transform: uppercase;
+                    white-space: nowrap;
+                }
+            }
+
+            h2 {
+                font-size: 180%;
+                color: var(--color-neutral-30);
+            }
+
+            h3 {
+                font-size: 130%;
+            }
+
+            /* Lists */
+
+            ul,
+            ol {
+                padding-inline-start: 2em;
+            }
+
+            li {
+                &::marker {
+                    color: var(--color-neutral-40);
+                }
+
+                + li {
+                    margin-top: 0.2em;
+                }
+            }
+
+            /* Sectioning elements */
+
+            header {
+                padding-block: 1em;
+                text-align: center;
+            }
+
+            main {
+                background: white;
+                color: var(--color-neutral-20);
+                border-radius: 1rem;
+                padding: 0.1rem 2rem;
+            }
+
+            /* Figures */
+
+            figure {
+                margin: 1em 0;
+                padding: 0.5rem;
+                margin-inline: -0.5em;
+                border: 1px solid var(--color-neutral-80);
+                box-shadow: 0 0.1em 0.2em var(--color-neutral-95);
+                text-align: center;
+                background: white;
+                counter-increment: figure;
+
+                > figcaption {
+                    font: 500 75% var(--font-sans);
+                    background: var(--color-neutral-95);
+                    padding: 0.5rem;
+                    margin: -0.5rem;
+                    margin-top: 0.5rem;
+                    text-align: left;
+
+                    &::before {
+                        content: "Figure " counter(figure) ": ";
+                        font-weight: bold;
+                        color: var(--color-neutral-40);
+                    }
+
+                    a:not(:hover, :focus, :active) {
+                        color: inherit;
+                        text-decoration: underline;
+                        text-decoration-color: color-mix(
+                            in lab,
+                            currentColor,
+                            transparent 70%
+                        );
+                    }
+                }
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            figure iframe {
+                width: 100%;
+                height: 620px;
+                border: 0;
+                background: white;
+            }
+
+            .score {
+                font-weight: 700;
+                font-variant-numeric: tabular-nums;
+            }
+        </style>
+    </head>
+
+    <body>
+        <header>
+            <h1>
+                <small>Project 2</small>
+                Persuasive or Deceptive Visualization?
+            </h1>
+
+            <p>
+                <strong>Stefan Boca</strong> — <em>sboca@ucsd.edu</em><br />
+                <strong>Elaine Gu</strong> — <em>elgu@ucsd.edu</em><br />
+                <strong>Aung Khant</strong> — <em>akhant@ucsd.edu</em><br />
+                <strong>Loren Pan</strong> — <em>lopan@ucsd.edu</em>
+            </p>
+        </header>
+
+        <main>
+            <h2>Proposition: Most CCRB allegations against NYPD officers become Unsubstantiated or Exonerated.</h2>
+
+            <section>
+                <h3>FOR the Proposition</h3>
+
+                <figure>
+                    <img
+                        src="map_for.png"
+                        alt="Choropleth of New York City precincts shaded by the share of allegations that were unsubstantiated or exonerated."
+                    />
+                </figure>
+            </section>
+
+            <section>
+                <h3>AGAINST the Proposition</h3>
+
+                <figure>
+                    <iframe
+                        src="figure2.html"
+                        title="Are most allegations substantiated? Line chart of three allegation categories across five-year periods."
+                    ></iframe>
+                    <figcaption>
+                        Substantiation rates for three selected allegation categories, grouped by year
+                        received into five-year intervals from 2000–2019. Hover for counts and
+                        percentages, or click a category name in the legend to highlight it.
+                    </figcaption>
+                </figure>
+
+                <p>Design Decisions and Rationale:</p>
+
+                <ul>
+                    <li>
+                        <span class="score">−2.</span>
+                        I selected these three allegation categories because their substantiation
+                        rates are unusually high compared with other categories in the dataset.
+                        Showing them together makes high substantiation appear typical, even though
+                        75% of allegations in the full dataset were unsubstantiated or exonerated.
+                        Displaying all categories would provide more context but weaken the intended
+                        argument. Although the percentages shown are accurate, selecting an
+                        unrepresentative subset encourages readers to draw a broader conclusion than
+                        the data supports.
+                    </li>
+                    <li>
+                        <span class="score">−1.5.</span>
+                        The title, “Are most allegations substantiated?”, asks a broad question that
+                        readers may answer using only the three categories shown. The subtitle
+                        suggests an affirmative answer and emphasizes that substantiation has become
+                        more common over time. It mentions the three categories, but readers may
+                        still take their results as representative of all allegations. These
+                        categories support the intended impression without disproving the original
+                        proposition, since substantiation can be common and increasing within them
+                        while remaining a minority overall.
+                    </li>
+                    <li>
+                        <span class="score">−0.5.</span>
+                        I initially used a 0-100% scale, but narrowed it to 30-100% in order for the
+                        differences and increases more visually pronounced. I think this is a
+                        defensible choice for a line chart because percentages are encoded by
+                        position and the axis clearly labels the displayed range. However, using more
+                        of the plot’s height for the same changes makes the increases appear larger
+                        and strengthens the impression of rising substantiation.
+                    </li>
+                    <li>
+                        <span class="score">+0.5.</span>
+                        I filtered to 2000–2019 and grouped allegations by category and five-year
+                        interval, then calculated the proportion of allegations in each group that
+                        were substantiated. Annual rates showed a less clear trend because some
+                        categories had very few allegations in individual years. Grouping reduced
+                        that instability but also hides annual peaks and troughs, making the upward
+                        trend appear smoother. The date range provides four complete intervals and
+                        excludes only two earlier allegations, from 1997 and 1999.
+                    </li>
+                    <li>
+                        <span class="score">+1.5.</span>
+                        I encoded time periods on an aligned x-axis and percentages on an aligned
+                        y-axis so readers can compare categories directly. I encoded the category
+                        with color, marker shape, and line stroke style so that categories are easily
+                        distinguishable from one another even without color. I also labeled the 50%
+                        reference line to emphasize that all but one plotted point represents a
+                        substantiated majority. For this visualization, I chose to make a line plot.
+                        My checkpoint visualization used stacked bars to compare outcomes within each
+                        category, but those bars did not show whether substantiation was becoming
+                        more common. Displaying percentages against the five-year percentages makes that
+                        change easy to follow.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Final Reflection</h2>
+
+                <p></p>
+            </section>
+        </main>
+    </body>
+</html>
